@@ -6,22 +6,22 @@ function clean(){
 $("#userForm").on('submit', function(e){
     e.preventDefault();
 
-    lemail=$('#lname').val();
+    lemail=$('#lemail').val();
     lpass=$('#lpass').val();
     $.ajax({
         data: {
             'op':'login',
-            'lname': lname,
+            'lemail': lemail,
             'lpass': lpass,
         },
-            url: '../ajax/users.php?op=login',
+            url: '../ajax/users.php?=login',
             type: 'POST',
             dataType: 'json',
             succes: function(response) {
                 if (response.data){
                     $(location).attr("href","../views/index.php");
                 } else {
-                    bootbox.alert("Incorrect / not found data");
+                    alert("Incorrect / not found data");
                 }
             },
         

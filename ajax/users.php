@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once "../model/Users.php";
 require_once "../views/index.php";
 $users = new Users();
@@ -25,16 +25,26 @@ switch ($_GET["op"]){
     break;
 
     case 'login':
-        if (isset($_POST["loging"])) {
-            $response=$users->login($lemail,$lpassword);
-            if($response.is_array){
-                $_SESSION['user_id'] = $response["id"];
-                $_SESSION['user_name'] = $response["name"];
-                $_SESSION['user_email'] = $response["email"];
-                printf("<script>window.location.replace(\"index.php\");</script>");
-            }else {
-            }
-        }
+        $user_pass=$_POST['lEmail'];
+		$user_key=$_POST['lPass'];
+		$rspta=$users->login($user_pass,$user_key);
+
+		while ($row = $rspta->fetch_object()){
+	        $user_arr[] = $row;
+	    }
+
+
+		 if ($user_arr)
+	     {
+	     	session_start();
+	         //Declaramos las variables de sesión
+	         $_SESSION["id_user"]=$user_arr[0]->id;
+	         $_SESSION["user_name"]=$user_arr[0]->name;
+	         $_SESSION["user_coins"]=$user_arr[0]->coins;
+	         $_SESSION['user_emailemail']=$user_arr[0]->email;
+	     }
+	     //var_dump( $_SESSION["nombre"]);
+	    echo json_encode(array('data'=>$user_arr));
 
         break;
 }

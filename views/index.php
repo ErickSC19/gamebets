@@ -2,7 +2,7 @@
 <html lang="en">
 <?php
 session_start();
-require_once '../config/conexion.php';
+//require_once '../config/conexion.php';
 include 'head.php';
 include "../mail/class.email.php";
 ?>
@@ -64,9 +64,9 @@ include "../mail/class.email.php";
                     <div class="col-xl-8">
                         <div class="h2 fs-1 text-white mb-4">"An intuitive solution to a lack the e-sports community face, wrapped up in a single app!"
                             <?php 
-                            foreach($res as $row) { 
+                            //foreach($res as $row) { 
                             ?>
-                            <?php echo $row['name'];}?>
+                            <?php //echo $row['name'];}?>
                         </div>
                         <img src="../public/assets/img/tnw-logo.svg" alt="..." style="height: 3rem" />
                     </div>
@@ -212,7 +212,7 @@ include "../mail/class.email.php";
                         <!-- To make this form functional, sign up at-->
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
-                        <form id="userForm" data-sb-form-api-token="API_TOKEN" method="POST">
+                        <form id="userForm" method="POST">
 
                             <!-- Email address input-->
                             <div class="text-center mb-3">
@@ -274,7 +274,7 @@ include "../mail/class.email.php";
                         <!-- To make this form functional, sign up at-->
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
-                        <form data-sb-form-api-token="API_TOKEN" method="POST" id="userRegistForm">
+                        <form method="POST" id="userRegistForm">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="nuser" type="text" placeholder="Enter an username..." data-sb-validations="required" required name="username"/>
                                 <label for="name">Full name</label>

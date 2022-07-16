@@ -83,6 +83,8 @@ session_start();
         </div>
       </div>
     </section>
+
+    <!-- Modal -->
     <div class="modal fade" id="editProfile" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered" style="max-width: 40%;">
         <div class="modal-content" style="border-radius: .5rem; padding : 0px;">
@@ -93,7 +95,7 @@ session_start();
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col mb-4 mb-lg-0">
               <div class="card mb-3" style="border-radius: .5rem;">
-              <form action="">
+              <form method="POST" id="editUserForm">
                 <div class="row g-0">
                   <div class="col-md-4 bg-gradient-primary-to-secondary text-center text-white"
                     style="border-bottom-left-radius: .5rem;">
@@ -132,7 +134,7 @@ session_start();
                           <div class="col-6 mb-3">
                             <h6>Current Password</h6>
                               <div class="form-floating mb-3">
-                                  <input class="form-control" id="password" type="password" placeholder="Enter your password..." data-sb-validations="required" />
+                                  <input class="form-control" id="cpassword" type="password" placeholder="Enter your password..." data-sb-validations="required" />
                                   <label for="name">Password</label>
                                   <div class="invalid-feedback" data-sb-feedback="password:required">Password required.</div>
                               </div>
@@ -142,15 +144,15 @@ session_start();
                           <div class="col-6 mb-3">
                             <h6>New Password</h6>
                               <div class="form-floating mb-3">
-                                  <input class="form-control" id="password" type="password" placeholder="Enter your password..."/>
+                                  <input class="form-control" id="epassword" type="password" placeholder="Enter your password..."/>
                                   <label for="name">Password</label>
-                                  <div class="invalid-feedback" data-sb-feedback="password:required">Password required.</div>
+                                  <div class="invalid-feedback" data-sb-feedback="password:required" required>Password required.</div>
                               </div>
                           </div>
                           <div class="col-6 mb-3">
                             <h6>Confirm Password</h6>
                               <div class="form-floating mb-3">
-                                  <input class="form-control" id="password" type="password" placeholder="Enter your password..."/>
+                                  <input class="form-control" id="epasswordc" type="password" placeholder="Enter your password..."/>
                                   <label for="name">Password</label>
                                   <div class="invalid-feedback" data-sb-feedback="password:required">Password required.</div>
                               </div>
@@ -176,7 +178,7 @@ session_start();
             <!-- Bootstrap core JS-->
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script src="../public/js/scripts.js"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->

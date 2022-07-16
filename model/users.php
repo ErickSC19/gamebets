@@ -21,14 +21,7 @@ Class Users {
     public function Login($email,$password){
         $sql = "SELECT id, name, email, coins FROM users 
         WHERE email='$email' AND password='$password';";
-        $userdata = ejecutarConsulta($sql);
-        if ($userdata->num_rows>0){
-            $row = mysqli_fetch_assoc($userdata);
-            return $row;
-
-        } else {
-            printf("<script>alert('We could not find that account. Please retype password and/or email.')</script>");
-        };
+        ejecutarConsulta($sql);
     }
 
 };
