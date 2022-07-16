@@ -336,10 +336,13 @@ include "../mail/class.email.php";
         <script src="scripts/users.js"></script>
 
         <?php
-                $id = $_SESSION['user_id'];
-                $obj = new Email();
-                $message = "Now you are registered to our newsletter!";
-                $obj->sendEmail($_POST["yourEmail"], $id, "Now you are subscribed!", $message);
+        if(isset($_POST["yourEmail"])){
+            $id = $_SESSION['user_id'];
+            $obj = new Email();
+            $message = "Now you are registered to our newsletter!";
+            $obj->sendEmail($_POST["yourEmail"], $id, "Now you are subscribed!", $message);
+        }
+
         ?>
     </body>
 </html>

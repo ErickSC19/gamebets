@@ -1,6 +1,7 @@
 <?php
 require "../config/conexion.php";
 require_once "../model/Users.php";
+session_start();
 //require_once "../views/index.php";
 $users = new Users();
 
@@ -33,20 +34,26 @@ switch ($_GET['op']){
         $sql = "SELECT id, name, email, coins FROM users 
         WHERE email ='$email' AND password ='$password';";
         $rspta=ejecutarConsulta($sql);
-        echo $email;
-        echo $password;
-        var_dump($rspta);
-        echo $rspta;
+        //echo $email;
+        //echo $password;
+        //var_dump($rspta);
+        //echo String($rspta);
         //printf("<script>console.log(".$rspta.")</script>");
 
         if ($rspta->num_rows > 0){
-            $user_arr = mysqli_fetch_assoc($rspta);
-            session_start();
+            //$row = mysqli_fetch_assoc($rspta);
+            while ($row = $rspta->fetch_object()){
+	            $user_arr[] = $row;
+	        }
             //Declaramos las variables de sesión
-            $_SESSION["id_user"]=$user_arr['id'];
-            $_SESSION["user_name"]=$user_arr['name'];
-            $_SESSION["user_coins"]=$user_arr['coins'];
-            $_SESSION['user_emailemail']=$user_arr['email'];
+            $_SESSION["id_user"]=$user_arr[0]->id;
+            $_SESSION["user_name"]=$user_arr[0]->name;
+            $_SESSION["user_coins"]=$user_arr[0]->coins;
+            $_SESSION['user_emailemail']=$user_arr[0]->email;
+            $json = json_encode(array('data'=>$user_arr));
+            echo $json;
+        } else {
+            printf('<script>alert("Error")</script>');
         }
 		//while ($row = $rspta->fetch_object()){
 	    //    $user_arr[] = $row;
@@ -58,8 +65,7 @@ switch ($_GET['op']){
 
 	     //}
 	     //var_dump( $_SESSION["nombre"]);
-	    $json = json_encode(array('data'=>$user_arr));
-        echo $json;
+
         break;
     case 'logout':
         //if (isset($_POST["logout"])){

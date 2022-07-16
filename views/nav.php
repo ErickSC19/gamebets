@@ -25,18 +25,19 @@
                             printf(
                                 '<div class="dropdown">
                                 <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                  <span class="small">
-                                      <?php echo $_SESSION[\'user_name\'];?>
-                                  </span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                  <li><a class="dropdown-item" href="profile.php">Profile</a></li>
-                                  <form method="post" id="logoutf">
-                                  <li><button class="dropdown-item" name="logout" id="logoutbtn" type="submit">Log Out</button></li>
-                                  </form>
-                                </ul>
-                              </div>'
-                            );
+                                  <span class="small">');
+                                      echo $_SESSION['user_name'];
+                            printf('
+                            </span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                              <form method="post" id="logoutf">
+                              <li><button class="dropdown-item" name="logout" id="logoutbtn" type="button">Log Out</button></li>
+                              </form>
+                            </ul>
+                          </div>
+                            ');                            
                         } else {
                             printf('
                         <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#feedbackModal">

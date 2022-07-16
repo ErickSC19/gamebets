@@ -35,22 +35,18 @@ $("#loginButton").click(function(e){
             }
         });
     });
-$("#logoutbtn").click(function(e){
-    e.preventDefault
+$("#logoutbtn").click(function(){
+    //e.preventDefault
     $.ajax({
-        data: {
-            'op' : 'logout',
-            'logout':true,
+        url: '../ajax/users.php?op=logout',
+        type: 'POST',
+        dataType: 'html',
+        success: function(response){
+            $(location).attr("href","../views/index.php");
         },
-            url: '../ajax/users.php?op=logout',
-            type: 'POST',
-            dataType: 'html',
-            success: function(response){
-                $(location).attr("href","../views/index.php");
-            },
-            error: function(response) {
-                console.log('error',response);
-            }
+        error: function(response) {
+            console.log('error',response);
+        }
     })
 });
 
