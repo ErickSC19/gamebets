@@ -1,23 +1,27 @@
 
+
+var $userform = $('#userForm'),
+    $registerform = $('#UserRegistForm');
+
 function clean(){
     $("#lemail").val("");
     $('#lpass').val("");
 };
-$("#userForm").on('submit', function(e){
+$("#loginButton").click(function(e){
     e.preventDefault();
 
-    lemail=$('#lEmail').val();
-    lpass=$('#lPass').val();
+    var lemail=$('#lEmail').val();
+    var lpass=$('#lPass').val();
     $.ajax({
+        url: '../ajax/users.php?op=login',
+        type: 'POST',
         data: {
-            'op':'login',
-            'lEmail': lemail,
-            'lPass': lpass,
+            'op' : 'login',
+            'lEmail' : lemail,
+            'lPass' : lpass
         },
-            url: '../ajax/users.php?=login',
-            type: 'POST',
             dataType: 'json',
-            succes: function(response) {
+            success: function(response) {
                 if (response.data){
                     $(location).attr("href","../views/index.php");
                 } else {
@@ -25,21 +29,25 @@ $("#userForm").on('submit', function(e){
                 }
             },
         
-        error: function(response) {
-        console.log('error',response);
+            error: function(response) {
+            console.log('error',response);
         
-        }
+            }
         });
     });
-$("#logoutbtn").on('submit', function(e){
+$("#logoutbtn").click(function(e){
     e.preventDefault
     $.ajax({
         data: {
             'op' : 'logout',
             'logout':true,
         },
-            url: '../ajax/users.php?=logout',
+            url: '../ajax/users.php?op=logout',
             type: 'POST',
+            dataType: 'html',
+            success: function(response){
+                $(location).attr("href","../views/index.php");
+            },
             error: function(response) {
                 console.log('error',response);
             }

@@ -11,11 +11,11 @@ $users = new Users();
 //$nemail = isset($_POST["nEmail"])? clean($_POST["nEmail"]):"";
 //$npass = isset($_POST["nPass"])? clean($_POST["nPass"]):"";
 //$npassc = isset($_POST["nPassc"])? clean($_POST["nPassc"]):"";
-$opcion=isset($_POST["op"])?$_POST["op"]:$_REQUEST["op"];
+//$opcion=isset($_POST["op"])?$_POST["op"]:$_REQUEST["op"];
 
 
 
-switch ($opcion){
+switch ($_GET['op']){
     case 'save/edit':
         if (empty($userid)){
             $response=$users->insertUser($user,$email,$password);
@@ -58,8 +58,8 @@ switch ($opcion){
 
 	     //}
 	     //var_dump( $_SESSION["nombre"]);
-	    //echo json_encode(array('data'=>$user_arr));
-
+	    $json = json_encode(array('data'=>$user_arr));
+        echo $json;
         break;
     case 'logout':
         //if (isset($_POST["logout"])){
@@ -68,7 +68,7 @@ switch ($opcion){
         //Destruìmos la sesión
         session_destroy();
         //Redireccionamos al login
-        header("Location: ../index.php");
+        //header("Location: ../index.php");
          //};
     break;
 }

@@ -242,7 +242,7 @@ include "../mail/class.email.php";
                             <!-- an error submitting the form-->
                             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                             <!-- Submit Button-->
-                            <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg" id="submitButton" type="submit" name="loging">Login</button></div>
+                            <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg" id="loginButton" type="button" name="loging">Login</button></div>
                                                         <!-- Submit success message-->
                             <!---->
                             <!-- This is what your users will see when the form-->
@@ -307,7 +307,7 @@ include "../mail/class.email.php";
                             <!-- an error submitting the form-->
                             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error registering!</div></div>
                             <!-- Submit Button-->
-                            <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg disabled" id="registerButton" type="submit">Register</button></div>
+                            <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg disabled" id="registerButton" type="button">Register</button></div>
                                                         <!-- Register message-->
                             <!---->
                             <!-- This is what your users will see when the form-->
