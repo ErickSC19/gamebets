@@ -3,14 +3,8 @@
 <?php
 session_start();
 require_once '../config/conexion.php';
-$query = 'SELECT * FROM users WHERE id=1;';
-$res = ejecutarConsulta($query);
-$row = mysqli_fetch_assoc($res);
-$_SESSION['user_id'] = $row["id"];
-$_SESSION['user_name'] = $row["name"];
-$_SESSION['user_email'] = $row["email"];
-$_SESSION['user_coins'] = $row["coins"];
 include 'head.php';
+include "mail/class.email.php";
 ?>
     <body id="page-top">
         <!-- Navigation-->
@@ -218,7 +212,7 @@ include 'head.php';
                         <!-- To make this form functional, sign up at-->
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
-                        <form id="userForm" data-sb-form-api-token="API_TOKEN" method="POST" action="users.php">
+                        <form id="userForm" data-sb-form-api-token="API_TOKEN" method="POST" action="users.php?/op=login">
 
                             <!-- Email address input-->
                             <div class="text-center mb-3">
@@ -280,7 +274,7 @@ include 'head.php';
                         <!-- To make this form functional, sign up at-->
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
-                        <form data-sb-form-api-token="API_TOKEN" method="POST" id="userRegistForm" action="users.php">
+                        <form data-sb-form-api-token="API_TOKEN" method="POST" id="userRegistForm" action="users.php?op=save/edit">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="nuser" type="text" placeholder="Enter an username..." data-sb-validations="required" />
                                 <label for="name">Full name</label>

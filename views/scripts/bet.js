@@ -31,7 +31,7 @@ function listBets(){
         dom: 'Bfrtip',
         "ajax":
             {
-                usrl: '../ajax/Bet.php?op=listbets',
+                url: '../ajax/Bet.php?op=listbets',
                 type : "get",
                 dataType: "json",
                 error: function(e){

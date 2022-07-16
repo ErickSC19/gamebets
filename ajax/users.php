@@ -3,8 +3,8 @@ session_start();
 require_once "../model/Users.php";
 $users = new Users();
 
-$email = isset($_POST["email"])? clean($_POST["email"]):"";
-$password = isset($_POST["password"])? clean($_POST["password"]):"";
+$lemail = isset($_POST["lEmail"])? clean($_POST["email"]):"";
+$lpassword = isset($_POST["lPass"])? clean($_POST["password"]):"";
 $userid = isset($_POST["userid"])? clean($_POST["userid"]):"";
 $user = isset($_POST["user"])? clean($_POST["user"]):"";
 
