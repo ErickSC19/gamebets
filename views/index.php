@@ -212,7 +212,7 @@ include "../mail/class.email.php";
                         <!-- To make this form functional, sign up at-->
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
-                        <form id="userForm" data-sb-form-api-token="API_TOKEN" method="POST" action="../ajax/users.php?/op=login">
+                        <form id="userForm" data-sb-form-api-token="API_TOKEN" method="POST">
 
                             <!-- Email address input-->
                             <div class="text-center mb-3">
@@ -221,14 +221,14 @@ include "../mail/class.email.php";
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required, email" required name="lEmail"/>
+                                <input class="form-control" id="lemail" type="email" placeholder="name@example.com" data-sb-validations="required, email" required name="lEmail"/>
                                 <label for="email">Email address</label>
                                 <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
                                 <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
                             </div>
                             <!-- Password input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="password" type="password" placeholder="Enter your password..." data-sb-validations="required" required name="lPass"/>
+                                <input class="form-control" id="lpass" type="password" placeholder="Enter your password..." data-sb-validations="required" required name="lPass"/>
                                 <label for="name">Password</label>
                                 <div class="invalid-feedback" data-sb-feedback="password:required">Password required.</div>
                             </div>
@@ -274,7 +274,7 @@ include "../mail/class.email.php";
                         <!-- To make this form functional, sign up at-->
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
-                        <form data-sb-form-api-token="API_TOKEN" method="POST" id="userRegistForm" action="users.php?op=save/edit">
+                        <form data-sb-form-api-token="API_TOKEN" method="POST" id="userRegistForm">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="nuser" type="text" placeholder="Enter an username..." data-sb-validations="required" required name="username"/>
                                 <label for="name">Full name</label>
@@ -307,7 +307,7 @@ include "../mail/class.email.php";
                             <!-- an error submitting the form-->
                             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error registering!</div></div>
                             <!-- Submit Button-->
-                            <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg disabled" id="submitButton" type="submit">Register</button></div>
+                            <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg disabled" id="registerButton" type="submit">Register</button></div>
                                                         <!-- Register message-->
                             <!---->
                             <!-- This is what your users will see when the form-->
@@ -327,12 +327,13 @@ include "../mail/class.email.php";
         <!-- Bootstrap core JS-->
         <!-- Core theme JS-->
         <script src="..\public\js\bootstrap.bundle.min.js"></script>
-        <script src="js/scripts.js"></script>
+        <script src="../public/js/scripts.js"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="scripts/users.js"></script>
 
         <?php
                 $id = $_SESSION['user_id'];
