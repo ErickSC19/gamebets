@@ -4,7 +4,7 @@
 session_start();
 require_once '../config/conexion.php';
 include 'head.php';
-include "mail/class.email.php";
+include "../mail/class.email.php";
 ?>
     <body id="page-top">
         <!-- Navigation-->
@@ -212,7 +212,7 @@ include "mail/class.email.php";
                         <!-- To make this form functional, sign up at-->
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
-                        <form id="userForm" data-sb-form-api-token="API_TOKEN" method="POST" action="users.php?/op=login">
+                        <form id="userForm" data-sb-form-api-token="API_TOKEN" method="POST" action="../ajax/users.php?/op=login">
 
                             <!-- Email address input-->
                             <div class="text-center mb-3">
@@ -242,7 +242,7 @@ include "mail/class.email.php";
                             <!-- an error submitting the form-->
                             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                             <!-- Submit Button-->
-                            <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg" id="submitButton" type="submit">Login</button></div>
+                            <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg" id="submitButton" type="submit" name="loging">Login</button></div>
                                                         <!-- Submit success message-->
                             <!---->
                             <!-- This is what your users will see when the form-->
@@ -276,28 +276,28 @@ include "mail/class.email.php";
                         <!-- to get an API token!-->
                         <form data-sb-form-api-token="API_TOKEN" method="POST" id="userRegistForm" action="users.php?op=save/edit">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="nuser" type="text" placeholder="Enter an username..." data-sb-validations="required" />
+                                <input class="form-control" id="nuser" type="text" placeholder="Enter an username..." data-sb-validations="required" required name="username"/>
                                 <label for="name">Full name</label>
-                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                                <div class="invalid-feedback" data-sb-feedback="name:required">A username is required.</div>
                             </div>
 
                             <!-- Email address input-->
 
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="nemail" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
+                                <input class="form-control" id="nemail" type="email" placeholder="name@example.com" data-sb-validations="required,email" required name="nEmail"/>
                                 <label for="email">Email address</label>
                                 <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
                                 <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
                             </div>
                             <!-- Password input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="npassword" type="password" placeholder="Enter your password..." data-sb-validations="required" />
+                                <input class="form-control" id="npassword" type="password" placeholder="Enter your password..." data-sb-validations="required" required name="nPass"/>
                                 <label for="name">Password</label>
                                 <div class="invalid-feedback" data-sb-feedback="password:required">Password required.</div>
                             </div>
                                 <!-- Password input-->
                                 <div class="form-floating mb-3">
-                                <input class="form-control" id="npasswordc" type="password" placeholder="Enter your password..." data-sb-validations="required" />
+                                <input class="form-control" id="npasswordc" type="password" placeholder="Enter your password..." data-sb-validations="required" required name="nPassc"/>
                                 <label for="name">Confirm Password</label>
                                 <div class="invalid-feedback" data-sb-feedback="password:required">Password required.</div>
                             </div>
@@ -338,7 +338,7 @@ include "mail/class.email.php";
                 $id = $_SESSION['user_id'];
                 $obj = new Email();
                 $message = "Now you are registered to our newsletter!";
-                $obj->sendEmail($_POST["yourEmail"], $id, "Now you are sudscribed!", $message);
+                $obj->sendEmail($_POST["yourEmail"], $id, "Now you are subscribed!", $message);
         ?>
     </body>
 </html>

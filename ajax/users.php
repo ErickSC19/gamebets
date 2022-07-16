@@ -1,12 +1,17 @@
 <?php
 session_start();
 require_once "../model/Users.php";
+require_once "../views/index.php";
 $users = new Users();
 
-$lemail = isset($_POST["lEmail"])? clean($_POST["email"]):"";
-$lpassword = isset($_POST["lPass"])? clean($_POST["password"]):"";
-$userid = isset($_POST["userid"])? clean($_POST["userid"]):"";
-$user = isset($_POST["user"])? clean($_POST["user"]):"";
+$lemail = isset($_POST["lEmail"])? clean($_POST["lEmail"]):"";
+$lpassword = isset($_POST["lPass"])? clean($_POST["lPass"]):"";
+$userid = isset($_POST["email"])? clean($_POST["email"]):"";
+$username = isset($_POST["username"])? clean($_POST["username"]):"";
+$nemail = isset($_POST["nEmail"])? clean($_POST["nEmail"]):"";
+$npass = isset($_POST["nPass"])? clean($_POST["nPass"]):"";
+$npassc = isset($_POST["nPassc"])? clean($_POST["nPassc"]):"";
+
 
 switch ($_GET["op"]){
     case 'save/edit':
@@ -20,12 +25,14 @@ switch ($_GET["op"]){
     break;
 
     case 'login':
-        $response=$users->login($email,$password);
-        if($response.is_array){
-            $_SESSION['user_id'] = $response["id"];
-            $_SESSION['user_name'] = $response["name"];
-            printf("<script>window.location.replace(\"index.php\");</script>");
-        }else {
+        if (isset($_POST["loging"])) {
+            $response=$users->login($lemail,$lpassword);
+            if($response.is_array){
+                $_SESSION['user_id'] = $response["id"];
+                $_SESSION['user_name'] = $response["name"];
+                printf("<script>window.location.replace(\"index.php\");</script>");
+            }else {
+            }
         }
 
         break;
