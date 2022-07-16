@@ -20,7 +20,7 @@ Class Users {
     }
     public function Login($email,$password){
         $sql = "SELECT id, name, email, coins FROM users 
-        WHERE email='$email' AND password='$password';";
+        WHERE email ='$email' AND password ='$password';";
         ejecutarConsulta($sql);
     }
 

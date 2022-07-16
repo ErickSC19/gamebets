@@ -221,14 +221,14 @@ include "../mail/class.email.php";
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="lemail" type="email" placeholder="name@example.com" data-sb-validations="required, email" required name="lEmail"/>
+                                <input class="form-control" id="lEmail" type="email" placeholder="name@example.com" data-sb-validations="required, email" required name="lEmail"/>
                                 <label for="email">Email address</label>
                                 <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
                                 <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
                             </div>
                             <!-- Password input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="lpass" type="password" placeholder="Enter your password..." data-sb-validations="required" required name="lPass"/>
+                                <input class="form-control" id="lPass" type="password" placeholder="Enter your password..." data-sb-validations="required" required name="lPass"/>
                                 <label for="name">Password</label>
                                 <div class="invalid-feedback" data-sb-feedback="password:required">Password required.</div>
                             </div>

@@ -6,13 +6,13 @@ function clean(){
 $("#userForm").on('submit', function(e){
     e.preventDefault();
 
-    lemail=$('#lemail').val();
-    lpass=$('#lpass').val();
+    lemail=$('#lEmail').val();
+    lpass=$('#lPass').val();
     $.ajax({
         data: {
             'op':'login',
-            'lemail': lemail,
-            'lpass': lpass,
+            'lEmail': lemail,
+            'lPass': lpass,
         },
             url: '../ajax/users.php?=login',
             type: 'POST',
@@ -26,7 +26,7 @@ $("#userForm").on('submit', function(e){
             },
         
         error: function(response) {
-        console.log(response);
+        console.log('error',response);
         
         }
         });
