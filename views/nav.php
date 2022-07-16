@@ -31,7 +31,9 @@
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                   <li><a class="dropdown-item" href="profile.php">Profile</a></li>
-                                  <li><a class="dropdown-item" href="#">Log Out</a></li>
+                                  <form method="post" id="logoutbtn">
+                                  <li><button class="dropdown-item" name="logout" type="submit">Log Out</button></li>
+                                  </form>
                                 </ul>
                               </div>'
                             );

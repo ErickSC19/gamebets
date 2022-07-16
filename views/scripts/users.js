@@ -31,7 +31,20 @@ $("#userForm").on('submit', function(e){
         }
         });
     });
-
+$("#logoutbtn").on('submit', function(e){
+    e.preventDefault
+    $.ajax({
+        data: {
+            'op' : 'logout',
+            'logout':true,
+        },
+            url: '../ajax/users.php?=logout',
+            type: 'POST',
+            error: function(response) {
+                console.log('error',response);
+            }
+    })
+});
 
     function savedit(e)
     {

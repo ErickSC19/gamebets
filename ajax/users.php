@@ -62,13 +62,14 @@ switch ($opcion){
 
         break;
     case 'logout':
-            		//Limpiamos las variables de sesión   
+        //if (isset($_POST["logout"])){
+        //Limpiamos las variables de sesión   
         session_unset();
         //Destruìmos la sesión
         session_destroy();
         //Redireccionamos al login
         header("Location: ../index.php");
-
+         //};
     break;
 }
 ?>
