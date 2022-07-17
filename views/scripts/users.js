@@ -6,6 +6,8 @@ $(function(){
     $loginErrorText = $('#loginErrorText'),
     $registError = $('#registError'),
     $registErrorText = $('#registErrorText');
+    $registSuccess = $('#registSuccess');
+    $registSuccessText = $('#registSuccessText');
     function clean(){
         $("#lemail").val("");
         $('#lpass').val("");
@@ -25,9 +27,12 @@ $(function(){
             },
                 dataType: 'json',
                 success: function(response) {
-                    if (response.error){
+                    console.log(response);
+                    var jsonData = JSON.parse(response);
+                    console.log(jsonData);
+                    if (jsonData.error == true){
                         $loginError.css({display: 'block'});
-                        $loginErrorText.html(response.errorType);
+                        $loginErrorText.html(jsonData.errorType);
                     } else {
                         $loginError.css({display: 'none'});
                         $(location).attr("href","../views/index.php");
@@ -74,7 +79,14 @@ $(function(){
             },
             dataType: 'json',
             success: function(response){
-    
+                if(response.error){
+                    $registError.css({display: 'block'});
+                    $registErrorText.html(response.errorType);
+                } else {
+                    $registError.css({display: 'none'});
+                    $registSuccess.css({display: 'block'});
+                    $registSuccessText.html(response.errorType);
+                }
             },
             error: function(response) {
                 console.log('error',response);

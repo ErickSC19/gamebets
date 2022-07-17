@@ -305,9 +305,9 @@ include "../mail/class.email.php";
                             <!---->
                             <!-- This is what your users will see when there is-->
                             <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorEmail"><div class="text-center text-danger mb-3">There is already an account linked with that email</div></div>
+                            <div class="d-none" id="registError"><div class="text-center text-danger mb-3" id="registErrorText"></div></div>
                             <div class="d-none" id="submitErrorPass"><div class="text-center text-danger mb-3">The passwords doesn't match</div></div>
-                            <div class="d-none" id="submitSuccess"><div class="text-center mb-3">Succesful registration!</div></div>
+                            <div class="d-none" id="registSuccess"><div class="text-center mb-3" id="registSuccessText">Succesful registration!</div></div>
                             <!-- Submit Button-->
                             <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg" id="registerButton" type="button">Register</button></div>
                                                         <!-- Register message-->

@@ -30,7 +30,7 @@ switch ($_GET['op']){
                     $output = ["error"=>true, "errorType" => 'Account already registered'];
                 } else {
                     $updating=$users->insertUser($ruser,$remail,$rpassword);
-                    echo $updating ? "New account created" : "Error in register";
+                    $output = ["error"=>false, "errorType" => 'Account succesfully registered'];
                 };
 
             } else {
