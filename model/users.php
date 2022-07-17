@@ -21,7 +21,12 @@ Class Users {
     public function Login($email,$password){
         $sql = "SELECT id, name, email, coins FROM users 
         WHERE email ='$email' AND password ='$password';";
-        ejecutarConsulta($sql);
+        return ejecutarConsulta($sql);
+    }
+    public function Verify($email, $username){
+        $sql = "SELECT id, name, email, coins FROM users 
+        WHERE email ='$email' AND name ='$username';";
+        return ejecutarConsulta($sql);
     }
 
 };

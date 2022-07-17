@@ -18,22 +18,39 @@ $users = new Users();
 
 switch ($_GET['op']){
     case 'save/edit':
-        if (empty($userid)){
-            $response=$users->insertUser($user,$email,$password);
-            echo $response ? "New account created" : "Error in register";
+        $output = [];
+        if (empty($_SESSION["id_user"])){
+            $ruser = $_POST["rUser"];
+            $remail = $_POST["tEmail"];
+            $rpassword = $_POST["rPass"];
+            $rpassc = $_POST["rPassC"];
+            if($rpassword==$rpassc){
+                $ver=$users->Verify($remail, $ruser);
+                if($ver->num_rows > 0){
+                    $output = ["error"=>true, "errorType" => 'Account already registered'];
+                } else {
+                    $updating=$users->insertUser($ruser,$remail,$rpassword);
+                    echo $updating ? "New account created" : "Error in register";
+                };
+
+            } else {
+                $output = ["error"=>true, "errorType" => 'The password fields doesn\'t match'];
+            }
         } else {
             $response=$users->editUser($user,$email,$password,$userid);
-            echo '<script> alert('.$response ? "User updated" : "Error updating".')</script>';
+            //echo '<script> alert('.$response ? "User updated" : "Error updating".')</script>';
         }
+        echo json_encode($output);
     break;
 
     case 'login':
-        $email=$_POST['lEmail'];
-		$password=$_POST['lPass'];
-		//$rspta=$users->Login($email,$password);
-        $sql = "SELECT id, name, email, coins FROM users 
-        WHERE email ='$email' AND password ='$password';";
-        $rspta=ejecutarConsulta($sql);
+        $output = [];
+        $lemail=$_POST['lEmail'];
+		$lpassword=$_POST['lPass'];
+		$rspta=$users->Login($lemail,$lpassword);
+        //$sql = "SELECT id, name, email, coins FROM users 
+        //WHERE email ='$lemail' AND password ='$lpassword';";
+        //$rspta=ejecutarConsulta($sql);
         //echo $email;
         //echo $password;
         //var_dump($rspta);
@@ -52,8 +69,12 @@ switch ($_GET['op']){
             $_SESSION['user_emailemail']=$user_arr[0]->email;
             $json = json_encode(array('data'=>$user_arr));
             echo $json;
+            break;
         } else {
-            printf('<script>alert("Error")</script>');
+            $output = ["error"=>true, "errorType" => 'Error with login, account doesn\'t exist'];
+            echo json_encode($output);
+            //printf('<script>alert("Error")</script>');
+            break;
         }
 		//while ($row = $rspta->fetch_object()){
 	    //    $user_arr[] = $row;

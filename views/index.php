@@ -158,7 +158,7 @@ include "../mail/class.email.php";
                         <form action="index.php" method="post">
                           <label class="lead fw-normal text-muted mb-5 mb-lg-0" for="">Subscribe to the newsletter:</label>
                           <input class="w3-input w3-border" type="email" placeholder="Your Email" required name="yourEmail">
-                          <button class="w3-button w3-black w3-right w3-section" type="submit" name="sendmessage">
+                          <button class="btn btn-primary rounded-pill btn-lg" type="submit" name="sendmessage">
                             <i class="fa fa-paper-plane"></i> SEND MESSAGE
                           </button>
                         </form>
@@ -240,7 +240,7 @@ include "../mail/class.email.php";
                             <!---->
                             <!-- This is what your users will see when there is-->
                             <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                            <div class="d-none" id="loginError"><div class="text-center text-danger mb-3" id="loginErrorText"></div></div>
                             <!-- Submit Button-->
                             <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg" id="loginButton" type="button" name="loging">Login</button></div>
                                                         <!-- Submit success message-->
@@ -276,7 +276,7 @@ include "../mail/class.email.php";
                         <!-- to get an API token!-->
                         <form method="POST" id="userRegistForm">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="nuser" type="text" placeholder="Enter an username..." data-sb-validations="required" required name="username"/>
+                                <input class="form-control" id="ruser" type="text" placeholder="Enter an username..." data-sb-validations="required" required name="username"/>
                                 <label for="name">Full name</label>
                                 <div class="invalid-feedback" data-sb-feedback="name:required">A username is required.</div>
                             </div>
@@ -284,20 +284,20 @@ include "../mail/class.email.php";
                             <!-- Email address input-->
 
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="nemail" type="email" placeholder="name@example.com" data-sb-validations="required,email" required name="nEmail"/>
+                                <input class="form-control" id="remail" type="email" placeholder="name@example.com" data-sb-validations="required,email" required name="nEmail"/>
                                 <label for="email">Email address</label>
                                 <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
                                 <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
                             </div>
                             <!-- Password input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="npassword" type="password" placeholder="Enter your password..." data-sb-validations="required" required name="nPass"/>
+                                <input class="form-control" id="rpassword" type="password" placeholder="Enter your password..." data-sb-validations="required" required name="nPass"/>
                                 <label for="name">Password</label>
                                 <div class="invalid-feedback" data-sb-feedback="password:required">Password required.</div>
                             </div>
                                 <!-- Password input-->
                                 <div class="form-floating mb-3">
-                                <input class="form-control" id="npasswordc" type="password" placeholder="Enter your password..." data-sb-validations="required" required name="nPassc"/>
+                                <input class="form-control" id="rpasswordc" type="password" placeholder="Enter your password..." data-sb-validations="required" required name="nPassc"/>
                                 <label for="name">Confirm Password</label>
                                 <div class="invalid-feedback" data-sb-feedback="password:required">Password required.</div>
                             </div>
@@ -305,9 +305,11 @@ include "../mail/class.email.php";
                             <!---->
                             <!-- This is what your users will see when there is-->
                             <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error registering!</div></div>
+                            <div class="d-none" id="submitErrorEmail"><div class="text-center text-danger mb-3">There is already an account linked with that email</div></div>
+                            <div class="d-none" id="submitErrorPass"><div class="text-center text-danger mb-3">The passwords doesn't match</div></div>
+                            <div class="d-none" id="submitSuccess"><div class="text-center mb-3">Succesful registration!</div></div>
                             <!-- Submit Button-->
-                            <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg disabled" id="registerButton" type="button">Register</button></div>
+                            <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg" id="registerButton" type="button">Register</button></div>
                                                         <!-- Register message-->
                             <!---->
                             <!-- This is what your users will see when the form-->
@@ -324,17 +326,10 @@ include "../mail/class.email.php";
                 </div>
             </div>
         </div>
-        <!-- Bootstrap core JS-->
-        <!-- Core theme JS-->
-        <script src="..\public\js\bootstrap.bundle.min.js"></script>
-        <script src="../public/js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-        <script src="scripts/users.js"></script>
-
+        <?php
+            include 'scriptlink.php';
+        ?>
+        
         <?php
         if(isset($_POST["yourEmail"])){
             $id = $_SESSION['user_id'];
