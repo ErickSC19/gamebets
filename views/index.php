@@ -277,7 +277,7 @@ include "../mail/class.email.php";
                         <form method="POST" id="userRegistForm">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="ruser" type="text" placeholder="Enter an username..." data-sb-validations="required" required name="username"/>
-                                <label for="name">Full name</label>
+                                <label for="name">User name</label>
                                 <div class="invalid-feedback" data-sb-feedback="name:required">A username is required.</div>
                             </div>
 

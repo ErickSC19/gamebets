@@ -21,7 +21,7 @@ switch ($_GET['op']){
         $output = [];
         if (empty($_SESSION["id_user"])){
             $ruser = $_POST["rUser"];
-            $remail = $_POST["tEmail"];
+            $remail = $_POST["rEmail"];
             $rpassword = $_POST["rPass"];
             $rpassc = $_POST["rPassC"];
             if($rpassword==$rpassc){
@@ -37,6 +37,7 @@ switch ($_GET['op']){
                 $output = ["error"=>true, "errorType" => 'The password fields doesn\'t match'];
             }
         } else {
+            $userid = $_SESSION['id_user'];
             $response=$users->editUser($user,$email,$password,$userid);
             //echo '<script> alert('.$response ? "User updated" : "Error updating".')</script>';
         }
@@ -66,7 +67,7 @@ switch ($_GET['op']){
             $_SESSION["id_user"]=$user_arr[0]->id;
             $_SESSION["user_name"]=$user_arr[0]->name;
             $_SESSION["user_coins"]=$user_arr[0]->coins;
-            $_SESSION['user_emailemail']=$user_arr[0]->email;
+            $_SESSION['user_email']=$user_arr[0]->email;
             $json = json_encode(array('data'=>$user_arr));
             echo $json;
             break;

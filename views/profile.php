@@ -95,7 +95,7 @@ session_start();
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col mb-4 mb-lg-0">
               <div class="card mb-3" style="border-radius: .5rem;">
-              <form method="POST" id="editUserForm">
+              <form id="editUserForm">
                 <div class="row g-0">
                   <div class="col-md-4 bg-gradient-primary-to-secondary text-center text-white"
                     style="border-bottom-left-radius: .5rem;">
@@ -113,8 +113,8 @@ session_start();
                           <div class="col-6 mb-3">
                             <h6>Email</h6>
                               <div class="form-floating mb-3">
-                                  <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
-                                  <label for="email">Email address</label>
+                                  <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" required/>
+                                  <label for="email"><?php echo $_SESSION['user_email']  ?></label>
                                   <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
                                   <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
                               </div>
@@ -122,8 +122,8 @@ session_start();
                           <div class="col-6 mb-3">
                             <h6>Username</h6>
                               <div class="form-floating mb-3">
-                                  <input class="form-control" id="name" type="text" placeholder="name@example.com" data-sb-validations="required" />
-                                  <label for="name">Username</label>
+                                  <input class="form-control" id="name" type="text" placeholder="name@example.com" data-sb-validations="required" required/>
+                                  <label for="name"><?php echo $_SESSION['user_name']?></label>
                                   <div class="invalid-feedback" data-sb-feedback="name:required">New username is required</div>
                               </div>
                           </div>
@@ -134,7 +134,7 @@ session_start();
                           <div class="col-6 mb-3">
                             <h6>Current Password</h6>
                               <div class="form-floating mb-3">
-                                  <input class="form-control" id="cpassword" type="password" placeholder="Enter your password..." data-sb-validations="required" />
+                                  <input class="form-control" id="cpassword" type="password" placeholder="Enter your password..." required/>
                                   <label for="name">Password</label>
                                   <div class="invalid-feedback" data-sb-feedback="password:required">Password required.</div>
                               </div>
@@ -144,22 +144,22 @@ session_start();
                           <div class="col-6 mb-3">
                             <h6>New Password</h6>
                               <div class="form-floating mb-3">
-                                  <input class="form-control" id="epassword" type="password" placeholder="Enter your password..."/>
+                                  <input class="form-control" id="epassword" type="password" placeholder="Enter your password..." required/>
                                   <label for="name">Password</label>
-                                  <div class="invalid-feedback" data-sb-feedback="password:required" required>Password required.</div>
+                                  <div class="invalid-feedback" data-sb-feedback="password:required">Password required.</div>
                               </div>
                           </div>
                           <div class="col-6 mb-3">
                             <h6>Confirm Password</h6>
                               <div class="form-floating mb-3">
-                                  <input class="form-control" id="epasswordc" type="password" placeholder="Enter your password..."/>
+                                  <input class="form-control" id="epasswordc" type="password" placeholder="Enter your password..." required/>
                                   <label for="name">Password</label>
                                   <div class="invalid-feedback" data-sb-feedback="password:required">Password required.</div>
                               </div>
                           </div>
                         </div>
                         <div class="d-flex justify-content-start">
-                          <button class="btn btn-secondary rounded-pill btn-lg" id="editButton" type="submit">Save</button>
+                          <button class="btn btn-secondary rounded-pill btn-lg" id="editButton" type="button">Save</button>
                         </div>
                       </form>
                     </div>
@@ -174,15 +174,8 @@ session_start();
 
     <?php
             include 'footer.php';
+            include 'scriptlink.php'
     ?>
-            <!-- Bootstrap core JS-->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="../public/js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
 </body>
 </html>
