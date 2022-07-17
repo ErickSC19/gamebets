@@ -8,6 +8,10 @@ $(function(){
     $registErrorText = $('#registErrorText');
     $registSuccess = $('#registSuccess');
     $registSuccessText = $('#registSuccessText');
+    $editError = $('#editError'),
+    $editErrorText = $('#editErrorText');
+    $editSuccess = $('#editSuccess');
+    $editSuccessText = $('#editSuccessText');
     function clean(){
         $("#lemail").val("");
         $('#lpass').val("");
@@ -98,42 +102,57 @@ $(function(){
         });
     
     });
-        function savedit(e)
-        {
-            
-            e.preventDefault(); //No se activará la acción predeterminada del evento
-            $("#btnGuardar").prop("disabled",false);
-            var formData = new FormData($("#formulario")[0]);
-            
-            //if($("#formulario").valid()) {
-                $.ajax({
-                        url: "../ajax/users.php?op=save/edit",
-                        type: "POST",		
-                         data:formData,
-                        cache:false,
-                        contentType: false,
-                        processData: false,
-                        success:function(data){
-                               $("#modalRegForm").modal('hide');
-                            $('#modalConfirm').modal({ keyboard: false, backdrop: 'static' });
-                             
-                            // bootbox.alert(data) ;	
-                             //$(location).attr("href","index.php");  
-                               
-                            },
+    $('#editButton').click(function(){
+        //e.preventDefault(); No se activará la acción predeterminada del evento
+        $("#btnGuardar").prop("disabled",false);
+        var eEmail = $('#eEmail').val();
+        var eName = $('#eName').val();
+        var cPass = $('#cPassword').val();
+        var ePass = $('#ePassword').val();
+        var ePassC = $('#ePasswordC').val();
+        
+        //if($("#formulario").valid()) {
+            $.ajax({
+                    url: "../ajax/users.php?op=save/edit",
+                    type: "POST",		
+                     data:{
+                        'eEmail':eEmail,
+                        'eName':eName,
+                        'cPass':cPass,
+                        'ePass':ePass,
+                        'ePassC':ePassC
+                     },
+                     dataType: 'json',
+                    //cache:false,
+                    //contentType: false,
+                    //processData: false,
+                    success:function(response){
+                        console.log(response);
+                        if(response.error){
+                            $editError.removeClass('d-none');
+                            $editErrorText.html(response.errorType);
+                        } else {
+                            $editError.addClass('d-none');
+                            $editSuccess.removeClass('d-none');
+                            $editSuccessText.html(response.errorType);
+                        }
+                         
+                        // bootbox.alert(data) ;	
+                         //$(location).attr("href","index.php");  
+                           
+                    },
+                        
+                    error: function(data){
+                            console.log("error");
+                            console.log(data);
                             
-                        error: function(data){
-                                console.log("error");
-                                console.log(data);
-                                
-                            }
+                        }
+    
+                   });
+    
         
-                       });
-        //
-            
-            clean();
-        
-        }
+        clean();
+    });
 
 
 });

@@ -102,7 +102,7 @@ session_start();
                     <img src="../public/assets/img/prof-logo.png"
                       alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
                     <h5><?php echo $_SESSION['user_name']?></h5>
-                    <p>Web Designer</p>
+                    <p>Gambler</p>
                     <i class="far fa-edit mb-5"></i>
                   </div>
                     <div class="col-md-8">
@@ -113,7 +113,7 @@ session_start();
                           <div class="col-6 mb-3">
                             <h6>Email</h6>
                               <div class="form-floating mb-3">
-                                  <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" required/>
+                                  <input class="form-control" id="eEmail" type="email" placeholder="name@example.com" data-sb-validations="required,email" value="<?php echo $_SESSION['user_email']  ?>" required/>
                                   <label for="email"><?php echo $_SESSION['user_email']  ?></label>
                                   <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
                                   <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
@@ -122,7 +122,7 @@ session_start();
                           <div class="col-6 mb-3">
                             <h6>Username</h6>
                               <div class="form-floating mb-3">
-                                  <input class="form-control" id="name" type="text" placeholder="name@example.com" data-sb-validations="required" required/>
+                                  <input class="form-control" id="eName" type="text" placeholder="name@example.com" data-sb-validations="required" value="<?php echo $_SESSION['user_name']?>" required/>
                                   <label for="name"><?php echo $_SESSION['user_name']?></label>
                                   <div class="invalid-feedback" data-sb-feedback="name:required">New username is required</div>
                               </div>
@@ -134,7 +134,7 @@ session_start();
                           <div class="col-6 mb-3">
                             <h6>Current Password</h6>
                               <div class="form-floating mb-3">
-                                  <input class="form-control" id="cpassword" type="password" placeholder="Enter your password..." required/>
+                                  <input class="form-control" id="cPassword" type="password" placeholder="Enter your password..." required/>
                                   <label for="name">Password</label>
                                   <div class="invalid-feedback" data-sb-feedback="password:required">Password required.</div>
                               </div>
@@ -144,7 +144,7 @@ session_start();
                           <div class="col-6 mb-3">
                             <h6>New Password</h6>
                               <div class="form-floating mb-3">
-                                  <input class="form-control" id="epassword" type="password" placeholder="Enter your password..." required/>
+                                  <input class="form-control" id="ePassword" type="password" placeholder="Enter your password..." required/>
                                   <label for="name">Password</label>
                                   <div class="invalid-feedback" data-sb-feedback="password:required">Password required.</div>
                               </div>
@@ -152,9 +152,10 @@ session_start();
                           <div class="col-6 mb-3">
                             <h6>Confirm Password</h6>
                               <div class="form-floating mb-3">
-                                  <input class="form-control" id="epasswordc" type="password" placeholder="Enter your password..." required/>
+                                  <input class="form-control" id="ePasswordC" type="password" placeholder="Enter your password..." required/>
                                   <label for="name">Password</label>
-                                  <div class="invalid-feedback" data-sb-feedback="password:required">Password required.</div>
+                                  <div class="d-none" id="editError"><div class="text-center text-danger mb-3" id="editErrorText"></div></div>
+                                  <div class="d-none" id="editSuccess"><div class="text-center mb-3" id="editSuccessText"></div></div>
                               </div>
                           </div>
                         </div>

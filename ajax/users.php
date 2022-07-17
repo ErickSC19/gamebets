@@ -24,21 +24,47 @@ switch ($_GET['op']){
             $remail = $_POST["rEmail"];
             $rpassword = $_POST["rPass"];
             $rpassc = $_POST["rPassC"];
-            if($rpassword==$rpassc){
-                $ver=$users->Verify($remail, $ruser);
-                if($ver->num_rows > 0){
-                    $output = ["error"=>true, "errorType" => 'Account already registered'];
-                } else {
-                    $updating=$users->insertUser($ruser,$remail,$rpassword);
-                    $output = ["error"=>false, "errorType" => 'Account succesfully registered'];
-                };
-
+            if($ruser == "" or $remail == "" or $rpassword == "" or $rpassc== ""){
+                $output = ["error"=>true, "errorType" => 'Fill all the fields'];
             } else {
-                $output = ["error"=>true, "errorType" => 'The password fields doesn\'t match'];
+                if($rpassword==$rpassc){
+                    $ver=$users->Verify($remail, $ruser);
+                    if($ver->num_rows > 0){
+                        $output = ["error"=>true, "errorType" => 'Account already registered'];
+                    } else {
+                        $updating=$users->insertUser($ruser,$remail,$rpassword);
+                        $output = ["error"=>false, "errorType" => 'Account succesfully registered'];
+                    };
+    
+                } else {
+                    $output = ["error"=>true, "errorType" => 'The password fields doesn\'t match'];
+                }
             }
+            
         } else {
             $userid = $_SESSION['id_user'];
-            $response=$users->editUser($user,$email,$password,$userid);
+            $euser = $_POST["eName"];
+            $eemail = $_POST["eEmail"];
+            $epassword = $_POST["ePass"];
+            $epassc = $_POST["ePassC"];
+            $cpass = $_POST["cPass"];
+            if($euser == "" or $eemail == "" or $epassword == "" or $epassc == "" or $cpass == ""){
+                $output = ["error"=>true, "errorType" => 'Fill all the fields'];
+            } else {
+                $rspta=$users->Login($eemail,$cpass);
+                if($rspta->num_rows>0){
+                    if($epassc==$epassword){
+                        $response=$users->editUser($euser,$eemail,$epassword,$userid);
+                    } else{
+                        $output = ["error"=>true, "errorType" => 'The password fields of the new password doesn\'t match'];
+                    }
+                    
+                } else {
+                    $output = ["error"=>true, "errorType" => 'Your current password doesn\'t fit with this'];
+                }
+            }
+
+            
             //echo '<script> alert('.$response ? "User updated" : "Error updating".')</script>';
         }
         echo json_encode($output);
