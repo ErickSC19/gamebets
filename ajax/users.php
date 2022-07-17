@@ -55,6 +55,7 @@ switch ($_GET['op']){
                 if($rspta->num_rows>0){
                     if($epassc==$epassword){
                         $response=$users->editUser($euser,$eemail,$epassword,$userid);
+                        $output = ["error"=>false, "errorType" => 'Edit done'];
                     } else{
                         $output = ["error"=>true, "errorType" => 'The password fields of the new password doesn\'t match'];
                     }
