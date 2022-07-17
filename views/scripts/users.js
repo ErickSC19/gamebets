@@ -26,15 +26,19 @@ $(function(){
                 'lPass' : lpass
             },
                 dataType: 'json',
+                cache: false,
+                //contentType: false,
+                //processData: false,
                 success: function(response) {
-                    console.log(response);
-                    var jsonData = JSON.parse(response);
-                    console.log(jsonData);
-                    if (jsonData.error == true){
-                        $loginError.css({display: 'block'});
-                        $loginErrorText.html(jsonData.errorType);
+                    //console.log(response);
+                    //var jsonData = JSON.parse(response);
+                    //console.log(jsonData);
+                    if (response.error == true){
+                        //alert(response.errorType);
+                        $loginError.removeClass('d-none');
+                        //$loginError.css('display', 'block');
+                        $loginErrorText.html(response.errorType);
                     } else {
-                        $loginError.css({display: 'none'});
                         $(location).attr("href","../views/index.php");
                     }
                 },
@@ -80,11 +84,11 @@ $(function(){
             dataType: 'json',
             success: function(response){
                 if(response.error){
-                    $registError.css({display: 'block'});
+                    $registError.removeClass('d-none');
                     $registErrorText.html(response.errorType);
                 } else {
-                    $registError.css({display: 'none'});
-                    $registSuccess.css({display: 'block'});
+                    $registError.addClass('d-none');
+                    $registSuccess.removeClass('d-none');
                     $registSuccessText.html(response.errorType);
                 }
             },
