@@ -43,6 +43,7 @@ switch ($_GET['op']){
             
         } else {
             $userid = $_SESSION['id_user'];
+            $oemail = $_SESSION['user_email'];
             $euser = $_POST["eName"];
             $eemail = $_POST["eEmail"];
             $epassword = $_POST["ePass"];
@@ -51,10 +52,19 @@ switch ($_GET['op']){
             if($euser == "" or $eemail == "" or $epassword == "" or $epassc == "" or $cpass == ""){
                 $output = ["error"=>true, "errorType" => 'Fill all the fields'];
             } else {
-                $rspta=$users->Login($eemail,$cpass);
+                $rspta=$users->Login($oemail,$cpass);
                 if($rspta->num_rows>0){
                     if($epassc==$epassword){
                         $response=$users->editUser($euser,$eemail,$epassword,$userid);
+                        $refresh=$users->Login($eemail, $epassword);
+                        while ($row = $refresh->fetch_object()){
+                            $user_arr[] = $row;
+                        }
+                        //Declaramos las variables de sesión
+                        $_SESSION["id_user"]=$user_arr[0]->id;
+                        $_SESSION["user_name"]=$user_arr[0]->name;
+                        $_SESSION["user_coins"]=$user_arr[0]->coins;
+                        $_SESSION['user_email']=$user_arr[0]->email;
                         $output = ["error"=>false, "errorType" => 'Edit done'];
                     } else{
                         $output = ["error"=>true, "errorType" => 'The password fields of the new password doesn\'t match'];
