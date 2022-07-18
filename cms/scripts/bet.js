@@ -4,9 +4,9 @@ function init(){
     showform(false);
     listBets();
 
-    $("#betform").on("submit",function(e)
+    $("#btnsave").click(function()
 	{
-		save_editbet(e);	
+		save_editbet();	
 	})
 }
 function clean(){
@@ -66,20 +66,38 @@ function listBets(){
 
 function save_editbet(e)
 {
-	e.preventDefault(); //No se activará la acción predeterminada del evento
+	//e.preventDefault(); //No se activará la acción predeterminada del evento
 	$("#btnsave").prop("disabled",true);
-	var formData = $('betform').serialize();
+    var $betid = $('betid');
+    var $redwins = $('redwins');
+    var $bluewins = $('bluewins');
+    var $redname = $('redname');
+    var $bluename = $('bluename');
+    var $available = $('available');
+    var $game = $('game');
+    //var betform = $('betform');
+	//var formData = betform.serialize();
+    //console.log(formData);
+
 	$.ajax({
 		url: "../ajax/bet.php?op=edit&createbet",
 	    type: "POST",
-	    data: formData,
+	    //data: formData,
 	    contentType: false,
 	    processData: false,
-
+        data: {
+            'betid': $betid,
+            'redwins': $redwins,
+            'bluewins': $bluewins,
+            'redname': $redname,
+            'bluename': $bluename,
+            'available': $available,
+            'game': $game
+        },
 	    success: function(data)
 	    {                    
-                
-	          bootbox.alert('data updated');	          
+              //console.log(data);
+	          bootbox.alert('data updated', data);	          
 	          showform(false);
 	          betstable.ajax.reload();
 	    },
@@ -92,7 +110,7 @@ function save_editbet(e)
 function showbets(betid){
     $.post("../ajax/bet.php?op=showbet",{betid : betid}, function(data, status)
 	{
-        console.log(data);
+        //console.log(data);
         data = JSON.parse(data);
         showform(true);
 

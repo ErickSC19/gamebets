@@ -24,15 +24,26 @@ switch($_GET["op"]){
         $pbet = $bet->betFor($support, $amount, $betid);
         break;
     case 'edit&createbet':
+        //$betid = $_POST["betid"];
+        //$redwins = $_POST["redwins"];
+        //$bluewins = $_POST["bluewins"];
+        //$redname = $_POST["redname"];
+        //$bluename = $_POST["bluename"];
+        //$available = $_POST["available"];
+        //$game = $_POST["bluewins"];
 
-        if(empty($betid)){
-            $response=addBet($redwins, $bluewins, $redname, $bluename, $avaiable, $game);
-            $output = $response ? "Bet registered" : "The registration couldn't finish";
+        if($betid == ""){
+            $response=$bet->addBet($redwins, $bluewins, $redname, $bluename, $available, $game);
+            //$output = $response ? "Bet registered" : "The registration couldn't finish";
+            //$output = $response;
+            echo 'enters add';
         } else {
             $response=$bet->editBet($betid, $redwins, $bluewins, $redname, $bluename, $available, $game);
-            $output = $response ? "Bet edited" : "The edition couldn't finish";
+            //$output = $response ? "Bet edited" : "The edition couldn't finish";
+            //$output = $response;
+            echo 'enters edit';
         }
-        echo $output;
+        //echo $output;
         break;
     case 'listbets':
         $rspta=$bet->listBets();
