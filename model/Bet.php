@@ -4,9 +4,9 @@ Class Bet {
     public function __construct(){
 
     }
-    public function addBet($redname, $bluename, $game){
-        $sql = "INSERT INTO bet (redname, bluename, game)
-        VALUES ('$redname','$bluename','$game');";
+    public function addBet($redwins, $bluewins, $redname, $bluename, $avaiable, $game){
+        $sql = "INSERT INTO bet (redwins, bluewins, redname, bluename, available, game)
+        VALUES ($redwins,$bluewins,'$redname','$bluename', $available,'$game');";
         ejecutarConsulta($sql);
     }
     public function betFor($teamwins, $amount, $betid){
@@ -18,7 +18,7 @@ Class Bet {
         ejecutarConsulta($sql);
     }
     public function editBet($betid, $redwins, $bluewins, $redname, $bluename, $available, $game){
-        $sql="UPDATE bet SET redwins='$redwins', bluewins='$bluewins', redname='$redname', bluename='$bluename', available='$avaiable', game='$game' WHERE id='$betid'";
+        $sql="UPDATE bet SET redwins=$redwins, bluewins=$bluewins, redname='$redname', bluename='$bluename', available=$avaiable, game='$game' WHERE id='$betid'";
         return ejecutarConsulta($sql);
 
     }

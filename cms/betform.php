@@ -5,9 +5,11 @@
 include 'head.php';
 ?>
 <body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
+<script src="../public/js/jquery.js" type="text/javascript"></script>
+<!--
  <script>window.jQuery || document.write('<script src="../public/js/jquery-3.1.1.min.js"><\/script>')</script>
-    <!-- DATATABLES -->
+-->   
+ <!-- DATATABLES -->
     <script src="../public/datatables/jquery.dataTables.min.js"></script>    
     <script src="../public/datatables/dataTables.buttons.min.js"></script>
     <script src="../public/datatables/buttons.html5.min.js"></script>
@@ -15,7 +17,7 @@ include 'head.php';
     <script src="../public/datatables/jszip.min.js"></script>
     <script src="../public/datatables/pdfmake.min.js"></script>
     <script src="../public/datatables/vfs_fonts.js"></script> 
-
+    <script src="../public/js/bootstrap.bundle.min.js"></script> 
     <script src="../public/js/bootbox.min.js"></script> 
     <script src="../public/js/bootstrap-select.min.js"></script>  
 
@@ -37,10 +39,10 @@ include 'head.php';
                         <table id="tblist" class="table table-striped table-bordered table-condensed table-hover">
                           <thead>
                             <th>id</th>
-                            <th>'Red team' name</th>
-                            <th>'Blue team' name:</th>
                             <th>Amount in favor of red:</th>
                             <th>Amount in favor of blue:</th>
+                            <th>'Red team' name</th>
+                            <th>'Blue team' name:</th>
                             <th>Availability</th>
                             <th>Game</th>
                           </thead>
@@ -53,10 +55,10 @@ include 'head.php';
                     </div>
                     <div class="panel-body" style="height: 400px;" id="betform">
                         <form name="formulario1" id="betform1" method="POST">
-                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 d-none">
                             <label>id:</label>
-                            <input type="hidden" name="betid" id="betid">
-                            <input type="input" class="form-control" name="conocenos" id="conocenos" >
+                            <input type="hidden" name="betid1" id="betid1">
+                            <input type="input" class="form-control" name="betid" id="betid" >
                           </div>
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>'Red team' name:</label>

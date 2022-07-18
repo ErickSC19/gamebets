@@ -38,7 +38,7 @@ function cancelForm(){
     showform(false);
 }
 function listBets(){
-    bets=$('#tblist').dataTable({
+    betstable=$('#tblist').dataTable({
         "aProcessing": true,
         "aServerSide": true,
         dom: 'Bfrtip',
@@ -50,11 +50,12 @@ function listBets(){
         ],
         "ajax":
             {
-                usrl: '../ajax/bet.php?op=listbets',
+                url: '../ajax/bet.php?op=listbets',
                 type : "get",
                 dataType: "json",
                 error: function(e){
-                    console.log(e.responseText);
+                    //console.log(e.responseText);
+                    console.log('error',e);
                 }
             },
         "bDestroy": true,
@@ -62,41 +63,46 @@ function listBets(){
         "order": [[0,"desc"]]
     }).DataTable();
 }
+
 function save_editbet(e)
 {
 	e.preventDefault(); //No se activará la acción predeterminada del evento
 	$("#btnsave").prop("disabled",true);
-	var formData = new FormData($("#betform")[0]);
-
+	var formData = $('betform').serialize();
 	$.ajax({
-		url: "../ajax/alumno.php?op=edit&createbet",
+		url: "../ajax/bet.php?op=edit&createbet",
 	    type: "POST",
 	    data: formData,
 	    contentType: false,
 	    processData: false,
 
-	    success: function(datos)
+	    success: function(data)
 	    {                    
-	          bootbox.alert(datos);	          
+                
+	          bootbox.alert('data updated');	          
 	          showform(false);
 	          betstable.ajax.reload();
-	    }
-
+	    },
+        error: function(data){
+            console.log('error',data);
+        }
 	});
 	clean();
 }
 function showbets(betid){
     $.post("../ajax/bet.php?op=showbet",{betid : betid}, function(data, status)
 	{
-    data = JSON.parse(data);
-    showform(true);
+        console.log(data);
+        data = JSON.parse(data);
+        showform(true);
 
-    $("#redname").val(data.redname);
-    $("#bluename").val(data.bluename);
-    $("#redwins").val(data.redwins);
-    $("#bluewins").val(data.bluewins);
-    $("#available").val(data.available);
-    $("#game").val(data.game);
+        $("#betid").val(data.id);
+        $("#redname").val(data.redname);
+        $("#bluename").val(data.bluename);
+        $("#redwins").val(data.redwins);
+        $("#bluewins").val(data.bluewins);
+        $("#available").val(data.available);
+        $("#game").val(data.game);
     })
 }
 init();
